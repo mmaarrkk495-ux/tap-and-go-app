@@ -1,0 +1,31 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn {
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#resultText {
+    transition: color 0.3s ease;
+}
+
+#volumeBar {
+    transition: width 0.1s linear;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.spinning {
+    animation: spin 1.5s linear infinite;
+}
