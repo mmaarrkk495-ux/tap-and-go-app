@@ -91,7 +91,7 @@ function calibrateAndListen() {
     setTimeout(() => {
         clearInterval(calibrationInterval);
         const ambientNoiseLevel = samples.reduce((a, b) => a + b, 0) / samples.length;
-        dynamicKnockThreshold = (ambientNoiseLevel * 1.16) + 16; 
+        dynamicKnockThreshold = (ambientNoiseLevel * 2.5) + 25; 
         updateUIMode('listening');
         detectKnock();
     }, calibrationTime);
