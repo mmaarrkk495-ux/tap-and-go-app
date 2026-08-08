@@ -1,6 +1,6 @@
 // ข้อมูลจากการทดลองที่ 1
 const psiData = [
-    { psi: 105, freq: 98.0 }, 
+    { psi: 105, freq: 98.1 }, 
     { psi: 100, freq: 95.2 }, { psi: 95, freq: 92.2 }, { psi: 90, freq: 88 },
     { psi: 85, freq: 85 }, { psi: 80, freq: 84.2 }, { psi: 75, freq: 82.8 },
     { psi: 70, freq: 82.2 }, { psi: 65, freq: 82 }, { psi: 60, freq: 79.8 },
