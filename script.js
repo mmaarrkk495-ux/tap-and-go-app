@@ -1,4 +1,4 @@
-// --- DATA FROM YOUR EXPERIMENT ---
+// ข้อมูลจากการทดลองที่ 1
 const psiData = [
     { psi: 105, freq: 98.0 }, 
     { psi: 100, freq: 95.2 }, { psi: 95, freq: 92.2 }, { psi: 90, freq: 88 },
@@ -9,7 +9,7 @@ const psiData = [
     { psi: 25, freq: 64 }, { psi: 20, freq: 64 }
 ];
 
-// --- DOM Element References ---
+// ส่วนประกอบของ UI
 const measureButton = document.getElementById('measureButton');
 const statusDiv = document.getElementById('status').querySelector('p');
 const resultText = document.getElementById('resultText');
@@ -33,7 +33,7 @@ let dynamicKnockThreshold = 200;
 measureButton.addEventListener('click', () => {
     if (!audioContext) {
         try {
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            audioContext = new (window.AudioContext || window.webkitAudioContext)(); // เรียกใช้  Web Audio API
         } catch (e) {
             statusDiv.textContent = 'เบราว์เซอร์ของคุณไม่รองรับ Web Audio API';
             return;
@@ -55,7 +55,7 @@ function findNearestPSI(freq) {
     ).psi;
 }
 
-async function startListening() {
+async function startListening() { //ขออนุญาตและเข้าถึงไมโครโฟน
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         statusDiv.textContent = 'เบราว์เซอร์ไม่รองรับการเข้าถึงไมโครโฟน';
         return;
@@ -64,7 +64,7 @@ async function startListening() {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
         microphone = audioContext.createMediaStreamSource(stream);
         analyser = audioContext.createAnalyser();
-        analyser.fftSize = 4096;
+        analyser.fftSize = 8192; // ขนาดของ FFT
         analyser.smoothingTimeConstant = 0.1;
         microphone.connect(analyser);
         isListening = true;
@@ -79,7 +79,7 @@ async function startListening() {
 
 function calibrateAndListen() {
     updateUIMode('calibrating');
-    const calibrationTime = 1000;
+    const calibrationTime = 500;
     const sampleInterval = 100;
     let samples = [];
     const calibrationInterval = setInterval(() => {
@@ -126,7 +126,7 @@ function detectKnock() {
 
 function analyzeFrequency() {
     const frequencyData = new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(frequencyData);
+    analyser.getByteFrequencyData(frequencyData); //รับข้อมูลความถี่จาก AnalyserNode(จากเบาร์เซอร์)
 
     const hpsSpectrum = new Float32Array(frequencyData.length);
     const harmonicsToProcess = 5; 
